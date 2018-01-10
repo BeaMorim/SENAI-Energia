@@ -1,0 +1,25 @@
+{
+  "name": "senai_energia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeaMorim/SENAI-Energia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeaMorim/SENAI-Energia/issues"
+  },
+  "homepage": "https://github.com/BeaMorim/SENAI-Energia#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^1.0.0"
+  }
+}
