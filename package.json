@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BeaMorim/SENAI-Energia#readme",
   "devDependencies": {
+    "browser-sync": "^2.23.5",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
