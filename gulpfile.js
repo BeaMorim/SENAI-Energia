@@ -10,6 +10,11 @@ gulp.task('clean', function () {
        .pipe(clean());
 });
 
+gulp.task('html', function() {
+    return gulp.src('src/**/*.html')
+        .pipe(gulp.dest('build'))
+})
+
 gulp.task('sass', function() {
     return gulp.src('src/scss/*.scss')
         .pipe(sass())
@@ -23,7 +28,7 @@ gulp.task('jsConcat', function() {
 })
 
 gulp.task('build', function(cb) {
-    sequence('clean', ['sass', 'jsConcat'])(cb)
+    sequence('clean', ['html', 'sass', 'jsConcat'])(cb)
 })
 
 gulp.task('default', ['build'], function(cb) {
