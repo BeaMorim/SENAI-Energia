@@ -50,7 +50,8 @@ gulp.task('build', function(cb) {
 });
 
 gulp.task('default', ['build'], function(cb) {
-    gulp.watch('src/scss/*.scss', ['sass']);
+    gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('src/**/*.html', ['html']);
     gulp.watch('src/app/**/*.js', ['jsConcat']);
+    gulp.watch('src/images/**/*.+(png|jpg|svg)', ['imagemin']);
 });
