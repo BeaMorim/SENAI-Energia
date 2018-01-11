@@ -1,0 +1,91 @@
+<div class="_margin-auto" flex-gt-md="70" flex="90">
+    <header>
+        <div>
+            <img src="greenSocket.png">
+            <h2>Preencha a tabela e descubra <span>qual tarifa se adequa melhor a você!</span></h2>
+        </div>
+        <div>
+            <button>Adicionar Registro</button>
+            <img src="blueSocket.png">
+        </div>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th>Aparelhos Elétricos da Residência *</th>
+                <th>Potência Elética *</th>
+                <th>Quantidade *</th>
+                <th>Horário de Início da Utilização *</th>
+                <th>Tempo de Utilização *</th>
+                <th>Custo por mês Tarifa Branca</th>
+                <th>Custo por mês Tarifa Convencional</th>
+            </tr>
+            <tr class="registers">
+                <td>
+                    <md-autocomplete 
+                    ng-disabled="false"
+                    md-no-cache="true"  
+                    md-search-text="applianceSearchText" 
+                    md-items="appliance in electricalAppliances | filter: {'name': applianceSearchText}" 
+                    md-item-text="appliance.name" 
+                    md-min-length="0" 
+                    md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                    <span> {{appliance.name}} </span>
+                    </md-item-template>
+                    </md-autocomplete>
+                </td>
+                <td>
+                    <input ng-model="power">
+                    <md-select ng-model="measure">
+                        <md-option value="W">W</md-option>
+                        <md-option value="kW">kW</md-option>
+                    </md-select>
+                </td>
+                <td>
+                    <input type="number" ng-model="quantity">
+                </td>
+                <td>
+                    <div>
+                        <input>
+                        <i></i>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="number" ng-model="hours">
+                        <span>h</span>
+                    </div>
+                    <div>
+                        <input type="number" ng-model="minuts">
+                        <span>min</span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span>R$</span>
+                        <input type="number">
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span>R$</span>
+                        <input type="number">
+                    </div>
+                </td>
+                <i></i>
+            </tr>
+        </table>
+        <div>
+            <span>Valor Final da Fatura</span>
+            <div>
+                <span>R$</span>
+                <input type="number" disabled>
+            </div>
+            <div>
+                <span>R$</span>
+                <input type="number" disabled>
+            </div>
+        </div>
+    </div>
+</div>
