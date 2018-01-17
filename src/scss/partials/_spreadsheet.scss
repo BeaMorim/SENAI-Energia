@@ -2,14 +2,14 @@
     height: 450px;
     padding: 25px;
     margin-top: 45px;
-    border: 2px solid $lightBlue;
+    border: 2px solid white;
 
     .background {
         height: 360px;
         background-repeat: no-repeat;
         background-position: center; 
         background-image: url("../images/tableBackground.png");
-        background-color: $lightBlue; 
+        background-color: white; 
     }
 
     table {
@@ -17,7 +17,7 @@
         background-repeat: no-repeat;
         background-position: center; 
         background-image: url("../images/tableBackground.png");
-        background-color: $lightBlue; 
+        background-color: white; 
 
         .header {
             color: $primaryColor;
@@ -29,7 +29,7 @@
 
         .registers {
             margin: 10px 0px;
-            background-color: $lightBlue;
+            background-color: white;
             
             tr {
                 background-color: red;
