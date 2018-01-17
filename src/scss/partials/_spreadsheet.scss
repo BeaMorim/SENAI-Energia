@@ -1,0 +1,39 @@
+.spreadsheet {
+    height: 450px;
+    padding: 25px;
+    margin-top: 45px;
+    border: 2px solid $lightBlue;
+
+    .background {
+        height: 360px;
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-image: url("../images/tableBackground.png");
+        background-color: $lightBlue; 
+    }
+
+    table {
+        border-collapse: collapse;
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-image: url("../images/tableBackground.png");
+        background-color: $lightBlue; 
+
+        .header {
+            color: $primaryColor;
+            font-size: 16px;
+            font-weight: 700;
+            background-color: white; 
+            border-bottom: 1px solid $primaryColor;
+        }
+
+        .registers {
+            margin: 10px 0px;
+            background-color: $lightBlue;
+            
+            tr {
+                background-color: red;
+            }
+        }
+    }
+}
