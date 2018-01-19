@@ -1,0 +1,34 @@
+md-autocomplete {
+    md-autocomplete-wrap {
+        height: auto;
+
+        md-progress-linear {
+            .md-mode-indeterminate {
+                display: none;
+            }
+        }
+    }
+    
+    button {
+        display: none;
+    }
+
+    input:not(.md-input) {
+        height: auto;
+        padding: 8px;
+        font-size: 16px;
+        line-height: normal;
+        background-color: $lightYellow;
+
+        &:focus {
+            outline: -webkit-focus-ring-color auto 5px;
+            outline-offset: -2px;
+            outline-color: $orange;
+        }
+    }
+}
+
+.md-whiteframe-1dp, .md-whiteframe-z1 {
+    box-shadow: none;
+}
+ 

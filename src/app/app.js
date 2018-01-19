@@ -10,6 +10,6 @@ var app = angular.module('senaiEnergia', ['ngMaterial', 'ui.router'])
             })
             .state('rateCalculation', {
                 url: "/planilha",
-                templateUrl: "app/shared/templates/rateCalculation.html"
+                templateUrl: "app/shared/templates/taxCalculation.html"
             })
     });

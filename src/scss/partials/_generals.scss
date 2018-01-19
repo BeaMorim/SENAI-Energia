@@ -9,16 +9,37 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+h3 {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -1px;
+    color: $primaryColor;
+}
+
 button {
     padding: 12px 15px;
     color: white;
     font-weight: 900;
     font-size: 20px;
-    background-color: $primaryColor;
-    border: 1px solid $primaryColor;
+    background-color: $green;
+    border: 1px solid $green;
     border-radius: 10px;
-    margin-right: 32px;
+    margin-bottom: 10px;
     letter-spacing: 0.5px;
+}
+
+input {
+    width: 60px;
+    height: fit-content;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 300;
+    color: $secondaryColor;
+    font-family: "Roboto", sans-serif;
+    background-color: $lightYellow;
+    outline-color: $orange;
 }
 
 .white-rate {

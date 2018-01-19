@@ -1,39 +1,147 @@
 .spreadsheet {
-    height: 450px;
-    padding: 25px;
-    margin-top: 45px;
-    border: 2px solid white;
+    margin-top: 20px;
 
     .background {
-        height: 360px;
-        background-repeat: no-repeat;
-        background-position: center; 
-        background-image: url("../images/tableBackground.png");
-        background-color: white; 
+        height: 500px;
+
+        p {
+            display: none;
+        }
+
+        &.active {
+            top: 90px;
+            z-index: 1;
+            position: relative;
+            font-size: 26px;
+            color: $secondaryColor;
+            font-family: "Roboto Condensed", sans-serif;
+            background-repeat: no-repeat;
+            background-position: center; 
+            background-image: url("../images/emptyState.png");
+
+            p {
+                top: 180px;
+                left: 180px;
+                position: relative;
+                display: block;
+    
+                span {
+                    display: block;
+                }
+            }
+        }
     }
 
     table {
+        width: 100%;
+        z-index: 10;
+        margin-top: -500px;
+        position: relative;
         border-collapse: collapse;
-        background-repeat: no-repeat;
-        background-position: center; 
-        background-image: url("../images/tableBackground.png");
-        background-color: white; 
+
+        tr {
+            :last-child {
+                td:first-child {
+                    border-radius: 0 0 0 10px;
+                }
+                td:last-child {
+                    border-radius: 0 0 10px 0;
+                }
+            }
+        }
 
         .header {
             color: $primaryColor;
             font-size: 16px;
             font-weight: 700;
-            background-color: white; 
-            border-bottom: 1px solid $primaryColor;
+            border-bottom: 2px solid $primaryColor;
+
+            th {
+                padding: 20px 0px;
+                background-color: white; 
+
+                &:first-child {
+                    border-radius: 10px 0 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 10px 0 0;
+                }
+            }
         }
 
-        .registers {
-            margin: 10px 0px;
-            background-color: white;
-            
-            tr {
-                background-color: red;
+        .register {
+            border-bottom: 5px solid $background;
+
+            &.-active {
+
+                input, .month-cost{
+                    background-color: $lightOrange;
+                }
+
+                md-autocomplete md-autocomplete-wrap md-progress-linear {
+                    .md-mode-indeterminate input:not(.md-input) {
+                        background-color: $lightOrange;
+                    }
+                }
+
+                md-select {
+                    .md-select-value {
+                        background-color: $lightOrange;
+                    }
+                }
             }
+
+            td {
+                padding: 15px;
+                background-color: white;
+
+                .month-cost {
+                    margin: auto;
+                    height: fit-content;
+                    padding: 0px 8px;
+                    border-radius: 5px;
+                    color: $secondaryColor;
+                    background-color: $lightYellow;
+                    outline-color: $orange;
+
+                    span {
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: $secondaryColor;
+                    }
+                }
+            }
+        }
+        
+
+        span {
+            display: block;
+        }
+    }
+
+    .amount {
+        display: flex;
+        align-items: center;
+        margin-top: 3px;
+        padding: 30px 80px;
+        border-radius: 10px;
+        background-color: white;
+
+        input {
+            height: auto;
+            font-size: 22px;
+            font-weight: 300;
+            background-color: transparent;
+        } 
+
+        span {
+            font-weight: 700;
+            font-size: 16px;
+            color: $secondaryColor;
+        }
+
+        &.-consumption {
+            margin-right: 8px;
         }
     }
 }

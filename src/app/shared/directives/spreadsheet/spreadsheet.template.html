@@ -1,4 +1,4 @@
-<div class="_margin-auto" flex-gt-md="70" flex="90">
+<div class="_margin-auto" flex-gt-md="80" flex="90">
     <header>
         <h2><span class="white-rate">Tarifa Branca</span>&nbspou&nbsp<span class="convencional-rate">Tarifa Convencional?</span></h2>
         <p>Preencha a tabela e descubra qual delas te fará economizar!</p>
@@ -6,86 +6,104 @@
     <div class="spreadsheet">
         <div layout="row" layout-align="end end">
             <button>Adicionar Registro</button>
-            <img src="images/blueSocket.png" class="buttonImage">
         </div>
-        <div class="background"></div>
+        <div class="background" ng-class="{ 'active': registers.length==0}">
+            <p>
+                <span>Comece a calcular clicando no botão</span>
+                Adicionar Registro acima da tabela
+            </p>
+        </div>
         <table>
             <tr class="header">
-                <th>Aparelhos Elétricos da Residência *</th>
+                <th><span>Aparelhos Elétricos</span> da Residência *</th>
                 <th>Potência Elética *</th>
                 <th>Quantidade *</th>
-                <th>Horário de Início da Utilização *</th>
-                <th>Tempo de Utilização *</th>
-                <th>Custo por mês Tarifa Branca</th>
-                <th>Custo por mês Tarifa Convencional</th>
+                <th><span>Qtd de dias Utilizado</span> em um mês *</th>
+                <th><span>Horário de Início</span> da Utilização *</th>
+                <th><span>Tempo de Utilização</span> por dia *</th>
+                <th><span>Custo por mês</span> Tarifa Branca</th>
+                <th><span>Custo por mês</span> Tarifa Convencional</th>
+                <th></th>
             </tr>
-            <div class="registers">
-                <tr>
-                    <td>
-                        <md-autocomplete 
-                        ng-disabled="false"
-                        md-no-cache="true"  
-                        md-search-text="applianceSearchText" 
-                        md-items="appliance in electricalAppliances | filter: {'name': applianceSearchText}" 
-                        md-item-text="appliance.name" 
-                        md-min-length="0" 
-                        md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                        <span> {{appliance.name}} </span>
-                        </md-item-template>
-                        </md-autocomplete>
-                    </td>
-                    <td>
-                        <input ng-model="power">
+            <tr ng-repeat="register in registers" class="register">
+                <td>
+                    <md-autocomplete 
+                    ng-disabled="false"
+                    md-no-cache="true"  
+                    md-search-text="applianceSearchText" 
+                    md-items="appliance in electricalAppliances | filter: {'name': applianceSearchText}" 
+                    md-item-text="appliance.name" 
+                    md-min-length="0" 
+                    md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                    <span> {{appliance.name}} </span>
+                    </md-item-template>
+                    </md-autocomplete>
+                </td>
+                <td >
+                    <div layout="row" layout-align="center center">
+                        <input type="number" ng-model="power" flex="40">
                         <md-select ng-model="measure">
                             <md-option value="W">W</md-option>
                             <md-option value="kW">kW</md-option>
                         </md-select>
-                    </td>
-                    <td>
-                        <input type="number" ng-model="quantity">
-                    </td>
-                    <td>
-                        <div>
-                            <input>
-                            <i></i>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="number" ng-model="hours">
-                            <span>h</span>
-                        </div>
-                        <div>
-                            <input type="number" ng-model="minuts">
-                            <span>min</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <span>R$</span>
-                            <input type="number">
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <span>R$</span>
-                            <input type="number">
-                        </div>
-                    </td>
-                    <i></i>
-                </tr>
-        </div>
+                    </div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center">
+                        <input type="number" ng-model="quantity" flex="70">
+                    </div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center">
+                        <input type="number" ng-model="daysOfUse" flex="35">
+                    </div>
+                </td>
+                <td> 
+                    <div layout="row" layout-align="center center">
+                        <input type="time" ng-model="startTime" flex="60" required />
+                    </div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center">
+                        <input type="time" ng-model="timeOfUse" flex="45" required />
+                    </div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center" flex="75" class="month-cost">
+                        <span>R$</span>
+                        <input type="number" flex="80" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center" flex="65" class="month-cost">
+                        <span>R$</span>
+                        <input type="number" flex="80" disabled>
+                    </div>
+                </td>
+                <td>
+                    <a href="#"><img src="images/trash.png"></a>
+                </td>
+            </tr>
         </table>
-        <div>
-            <span>Valor Final da Fatura</span>
-            <div>
-                <span>R$</span>
-                <input type="number" disabled>
+        <div layout="row">
+            <div flex="50" class="amount -consumption">
+                <h3 flex="45">Consumo Total</h3>
+                <div layou="row" layout-align="center end">
+                    <input type="number" disabled>
+                    <span>kWh/mês</span>
+                </div>
             </div>
-            <div>
-                <span>R$</span>
-                <input type="number" disabled>
+            <div flex="50" class="amount">
+                <h3 flex="55">Valor Final da Fatura</h3>
+                <div flex="20">
+                    <span>R$</span>
+                    <input type="number" disabled>
+                </div>
+                <div flex="25" flex-offset="10">
+                    <span>R$</span>
+                    <input type="number" flex="100" disabled>
+                </div>
             </div>
         </div>
     </div>
