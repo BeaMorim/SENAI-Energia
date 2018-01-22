@@ -29,6 +29,10 @@ gulp.task('html', function() {
 gulp.task('sass', function() {
     return gulp.src('src/scss/*.scss')
         .pipe(sass())
+        .on('error', function(err) {
+            console.log(err.toString());
+            this.emit('end');            
+        })
         .pipe(gulp.dest('build/css'))
         .pipe(browserSync.stream());
 });

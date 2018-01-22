@@ -32,14 +32,17 @@
         }
     }
 
+
     table {
-        width: 100%;
         z-index: 10;
         margin-top: -500px;
+        width: 100%;
         position: relative;
         border-collapse: collapse;
 
         tr {
+            background-color: white;
+
             :last-child {
                 td:first-child {
                     border-radius: 0 0 0 10px;
@@ -54,6 +57,7 @@
             color: $primaryColor;
             font-size: 16px;
             font-weight: 700;
+            border-radius: 10px 10px 0 0;
             border-bottom: 2px solid $primaryColor;
 
             th {

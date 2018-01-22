@@ -9,6 +9,6 @@ app
     .controller('spreadsheetController', [ '$scope', function($scope) {
         $scope.teste = "teste"
 
-        $scope.registers = ["teste1", "teste2", "teste3", "teste4"];
+        $scope.registers = ["teste1", "teste2", "teste3", "teste4", "teste12", "teste22", "teste32", "teste42"];
 
     }])
