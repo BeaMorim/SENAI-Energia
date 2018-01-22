@@ -1,0 +1,45 @@
+md-dialog {
+    padding: 15px;
+
+    md-dialog-content {
+        padding: 45px;
+
+        .md-dialog-content {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            p {
+                text-align: center;
+                font-size: 26px;
+                margin-bottom: 50px;
+                color: $secondaryColor;
+            }
+
+            md-select {
+                width: 80%;
+                
+                .md-select-value {
+                    background-color: #fcf2ec;
+
+                    .md-select-icon {
+                        color: $orange;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    md-dialog-actions {
+
+        .md-button {
+            color: white;
+            padding: 5px 15px;
+            font-size: 18px;
+            font-family: "Roboto Condensed", sans-serif;
+            background-color: $pink;
+        }
+    }
+}
