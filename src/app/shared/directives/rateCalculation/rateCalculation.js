@@ -1,5 +1,5 @@
 app 
-    .controller('taxCalculationController', function($scope, $mdDialog) {
+    .controller('rateCalculationController', function($scope, $mdDialog) {
 
         $scope.openModal = function() {
             $mdDialog.show({

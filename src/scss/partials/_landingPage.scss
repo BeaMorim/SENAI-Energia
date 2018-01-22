@@ -1,0 +1,169 @@
+.landing-page {
+    .main-page {
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-image: url("../images/background.png");
+
+        h2 {
+            padding-top: 10%;
+        }
+
+        button {
+            margin-top: 10%;
+            background-color: $pink;
+        }
+    }
+
+    .secondary-page {
+        height: 100vh;
+        background-color: $background;
+
+        h2 {
+            padding-top: 7%;
+        }
+
+        md-select {
+            width: 25%;
+            padding-right: 5%;
+            margin-bottom: 5px;
+            display: flex;
+            align-self: flex-end;
+
+            .md-select-value { 
+                color: white;
+                background-color: $secondaryColor;
+
+                .md-select-icon {
+                    color: white;
+                }
+            }
+        }
+
+        .rates {
+            width: 90%;
+            margin: auto;
+            padding: 5%;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            border-radius: 10px;
+            border: 1px solid $green;
+
+            h3 {
+                color: $green;
+                font-size: 36px;
+            }
+
+            md-content {
+                margin: 5px;
+                background-color: transparent;
+                
+                &:first-child {
+                    margin-left: 0; 
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &:nth-child(odd) {
+                    md-card {
+                        md-card-content {
+                            color: white;
+                            background-color: $green;
+                        }
+                    }
+                }
+
+                md-card {       
+                    box-shadow: none;
+                    border-radius: 10px;
+
+                    md-card-content {
+                        padding: 30px 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        border: 1px solid $green;
+                        color: $green;
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                            font-size: 18px;
+                            display: flex;
+                            justify-content: center;
+                            align-content: center;
+                        }
+
+                        span {
+                            margin-top: 30%;
+                            font-size: 20px;
+                            font-weight: 700;
+                            display: flex;
+                            align-items: flex-start;
+
+                            strong {
+                                font-size: 44px;
+                                line-height: 1em;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        button {
+            align-self: center;
+            margin-top: 5%;
+            background-color: $primaryColor;
+        }
+    }
+
+    .content {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        color: $secondaryColor;
+        font-family: "Roboto Condensed", sans-serif;
+
+        h2 {
+            display: block;
+            font-size: 4em;
+            font-weight: 700;
+            letter-spacing: -2px;
+    
+            span {
+                display: block;
+            }
+        }
+
+        small {
+            padding-top: 10px; 
+            font-weight: 300;
+            font-size: 28px;
+        }
+
+        p {
+            width: 75%;
+            padding-left: 5%;;
+            padding-top: 10px; 
+            margin-bottom: 3%;
+            font-weight: 300;
+            font-size: 28px;
+        }
+
+        button {
+            width: fit-content;
+            padding: 20px;
+            border: 0px;
+            font-size: 32px;
+        }
+    }
+
+    
+    
+}

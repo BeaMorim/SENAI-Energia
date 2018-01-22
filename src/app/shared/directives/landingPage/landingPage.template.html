@@ -1,0 +1,58 @@
+<div class="landing-page">
+    <section class="main-page">
+        <div class="content">
+            <h2>
+                Tarifa Branca ou Tarifa Convencional:
+                <span>qual a ideal para o seu bolso?</span>
+            </h2>
+            <small>Calcule e descubra qual a melhor opção para você economizar!</small>
+            <button ui-sref="rateCalculation">Descubra qual a ideal para você!</button>
+        </div>
+        
+    </section>
+    <section class="secondary-page">
+        <div class="content">
+            <h2>Uma nova tarifa pode te fazer economizar!</h2>
+            <p>
+                Enquanto a tarifa convencional te oferece um valor fixo de energia, a tarifa branca possui custos variadosde energia dependendo do dia e horário de uso.
+            </p>
+            <md-select ng-model="energyCompany" flex="20">
+                <md-option ng-repeat="energyCompany in energyCompanies">{{energyCompany.name}}</md-option>
+            </md-select>
+            <div class="rates">
+                <div class="white-rate" flex="60">
+                    <h3>Tarifa Branca</h3>
+                    <div layout="row" layout-align="center center">
+                        <md-content flex-gt-xs="30" ng-repeat="rate in whiteRates">
+                            <div>
+                                <md-card>
+                                    <md-card-content layout="column">
+                                        <p ng-repeat="interval in rate.intervals">{{interval.startTime}} às {{interval.endTime}}</p>
+                                        <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+                <div class="convencional-rate" flex="40">
+                    <h3>Tarifa Convencional</h3>
+                    <div layout="row" layout-align="center center">
+                        <md-content flex="50" ng-repeat="rate in conventionalRates">
+                            <div>
+                                <md-card>
+                                    <md-card-content layout="column">
+                                        <p ng-repeat="interval in rate.intervals">{{interval.startTime}} às {{interval.endTime}}</p>
+                                        <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+            <button ui-sref="rateCalculation">Calcule e economize!</button>
+        </div>
+    </section>
+    <footer></footer>
+</div>
