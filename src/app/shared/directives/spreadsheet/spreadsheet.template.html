@@ -5,13 +5,12 @@
     </header>
     <div class="spreadsheet">
         <div layout="row" layout-align="end end">
-            <button>Adicionar Registro</button>
+            <button ng-click="addRegister()">Adicionar Registro</button>
         </div>
         <div class="background" ng-class="{ 'active': registers.length==0}">
             <p>
                 <span>Comece a calcular clicando no botão</span>
                 Adicionar Registro acima da tabela
-                {{electricalAppliances}}
             </p>
         </div>
         <table>
@@ -38,16 +37,18 @@
                         md-items="appliance in electricalAppliances | filter: {'name': applianceSearchText}" 
                         md-item-text="appliance.name" 
                         md-min-length="0" 
+                        ng-blur="teste()"
+                        md-selected-item-change="teste()"
                         md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                        <span> {{appliance.name}} </span>
-                        </md-item-template>
+                            <md-item-template>
+                            <span> {{appliance.name}} </span>
+                            </md-item-template>
                         </md-autocomplete>
                     </td>
                     <td >
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="power" >
-                            <md-select ng-model="measure">
+                            <input type="number" ng-model="register.power" ng-change="teste()">
+                            <md-select ng-model="measure" ng-change="teste()">
                                 <md-option value="W">W</md-option>
                                 <md-option value="kW">kW</md-option>
                             </md-select>
@@ -55,22 +56,22 @@
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="quantity" flex="70">
+                            <input type="number" ng-model="register.quantity" flex="70" ng-change="teste()">
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="daysOfUse" flex="35">
+                            <input type="number" ng-model="register.daysOfUse" flex="35" ng-change="teste()">
                         </div>
                     </td>
                     <td> 
                         <div layout="row" layout-align="center center">
-                            <input type="time" ng-model="startTime" flex="70" required />
+                            <input type="time" ng-model="register.startUse" flex="70" ng-change="teste()"/>
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="time" ng-model="timeOfUse" flex="55" required />
+                            <input type="time" ng-model="register.time" flex="55" ng-change="teste()"/>
                         </div>
                     </td>
                     <td>
@@ -86,7 +87,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="#"><img src="images/trash.png"></a>
+                        <a ng-click="removeRegister(register)"><img src="images/trash.png"></a>
                     </td>
                 </tr>
             </tbody>

@@ -9,7 +9,7 @@
         }
 
         &.active {
-            top: 90px;
+            top: 85px;
             z-index: 1;
             position: relative;
             font-size: 26px;
@@ -126,7 +126,7 @@
     .amount {
         display: flex;
         align-items: center;
-        margin-top: 3px;
+        margin-top: 5px;
         padding: 30px 80px;
         border-radius: 10px;
         background-color: white;

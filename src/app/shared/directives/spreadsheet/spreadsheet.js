@@ -7,10 +7,27 @@ app
     })
 
     .controller('spreadsheetController', [ '$scope', 'spreadsheetFactory', function($scope, spreadsheetFactory) {
-        $scope.teste = "teste"
 
-        $scope.registers = ["teste1", "teste2", "teste3", "teste4", "teste12", "teste22", "teste32", "teste42"];
-       
+        $scope.registers = [];
+        $scope.lastId = 0;
+        
+        $scope.addRegister = function() {
+            var newRegister = {id: $scope.lastId};
+            $scope.lastId ++;
+            $scope.registers.push(newRegister)
+        }
+
+        $scope.removeRegister = function(removeItem) {
+            let index = $scope.registers.indexOf(removeItem);
+            $scope.registers.splice(index, 1);
+        }
+
+        $scope.teste = function() {
+            console.log('xxx')
+        }
+
+
+        
         
         
 
