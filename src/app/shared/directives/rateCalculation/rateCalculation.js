@@ -1,7 +1,15 @@
 app 
-    .controller('rateCalculationController', function($scope, $mdDialog) {
+    .controller('rateCalculationController', function($scope, spreadsheetFactory, $mdDialog) {
 
-        $scope.openModal = function() {
+        $scope.electricalAppliances = [];
+        $scope.companyId = 0;
+
+        $scope.init = function(){
+            openModal();
+            getAppliances();
+        }
+
+        var openModal = function() {
             $mdDialog.show({
                 templateUrl: 'app/shared/directives/modal/modal.template.html',
                 parent: angular.element(document.body),
@@ -9,16 +17,28 @@ app
                 clickOutsideToClose: false
             })
             .then(function(energyCompany) {
-                //armazenar a companhia de energia escolhida
+                $scope.companyId = energyCompany;
             })
         }
 
-        function modalController($scope, $mdDialog) {
+        var getAppliances = function() {
+            spreadsheetFactory.getAppliances()
+                .then(function(promisse) {
+                    $scope.electricalAppliances = promisse.data.equipments;
+                })
+        }
 
+        function modalController($scope, $mdDialog) {
             $scope.hideModal = function() {
-                $mdDialog.hide();
+                $mdDialog.hide($scope.energyCompanySelected.id);
             };
 
+            $scope.getCompanies = function() {
+                spreadsheetFactory.companiesList
+                    .then(function(promisse) {
+                        $scope.energyCompanies = promisse;
+                    })
+            }
         }
 
     })

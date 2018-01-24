@@ -1,17 +1,26 @@
 app 
     .factory('spreadsheetFactory', function($http, config) {
        
+        var getCompanies = function() {
+            return $http({
+                method: 'GET',
+                url: config.baseUrl + '/companies'
+            })
+        }
+
+        var _companiesList = getCompanies()
+            .then(function(promisse) {
+                energyCompanies = promisse.data.companies;
+                return energyCompanies;
+            })
+            .catch(function() {
+                return energyCompanies;
+            })
+
         var _getAppliances = function() {
             return $http({
                 method: 'GET',
                 url: config.baseUrl + '/equipments'
-            })
-        }
-
-        var _getCompanies = function() {
-            return $http({
-                method: 'GET',
-                url: config.baseUrl + '/companies'
             })
         }
 
@@ -31,8 +40,8 @@ app
         }
 
         return {
+            companiesList: _companiesList,
             getAppliances: _getAppliances,
-            getCompanies: _getCompanies,
             getTimeIntervals: _getTimeIntervals,
             monthlyCalculation: _monthlyCalculation
         }

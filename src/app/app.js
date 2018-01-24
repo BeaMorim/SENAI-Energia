@@ -14,5 +14,6 @@ var app = angular.module('senaiEnergia', ['ngMaterial', 'ui.router'])
                 templateUrl: "app/shared/directives/rateCalculation/rateCalculation.template.html",
                 controller: "rateCalculationController"
             })
-    });
+    })
+
     

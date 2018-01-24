@@ -1,4 +1,4 @@
-<md-dialog aria-label="" flex="40">
+<md-dialog aria-label="" flex="40" ng-init="getCompanies()">
     <form ng-cloak >
         <md-dialog-content>
             <div class="md-dialog-content">
@@ -6,14 +6,14 @@
                     Para começar, informe sua companhia de energia
                     para podermos calcular sua tarifa ideal:
                 </p>
-                <md-select ng-model="energyCompany">
-                    <md-option ng-repeat="energyCompany in energyCompanies">{{energyCompany.name}}</md-option>
+                <md-select ng-model="energyCompanySelected">
+                    <md-option ng-repeat="energyCompany in energyCompanies" ng-value="energyCompany">{{energyCompany.name}}</md-option>
                 </md-select>
             </div>
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
-            <md-button ng-click="hideModal()" ng-show="energyCompany">
+            <md-button ng-click="hideModal()" ng-show="energyCompanySelected">
                 Calcular e economizar
             </md-button>
         </md-dialog-actions>

@@ -1,4 +1,4 @@
-<div class="landing-page">
+<div class="landing-page" ng-init="getCompanies()">
     <section class="main-page">
         <div class="content">
             <h2>
@@ -10,14 +10,14 @@
         </div>
         
     </section>
-    <section class="secondary-page">
+    <section class="secondary-page" >
         <div class="content">
             <h2>Uma nova tarifa pode te fazer economizar!</h2>
             <p>
                 Enquanto a tarifa convencional te oferece um valor fixo de energia, a tarifa branca possui custos variadosde energia dependendo do dia e horário de uso.
             </p>
-            <md-select ng-model="energyCompany" flex="20">
-                <md-option ng-repeat="energyCompany in energyCompanies">{{energyCompany.name}}</md-option>
+            <md-select ng-model="energyCompanySelected" flex="20">
+                <md-option ng-repeat="energyCompany in energyCompanies" ng-value="energyCompany">{{energyCompany.name}}</md-option>
             </md-select>
             <div class="rates">
                 <div class="white-rate" flex="60">

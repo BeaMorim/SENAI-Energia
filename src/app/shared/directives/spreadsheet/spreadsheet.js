@@ -10,26 +10,13 @@ app
         $scope.teste = "teste"
 
         $scope.registers = ["teste1", "teste2", "teste3", "teste4", "teste12", "teste22", "teste32", "teste42"];
-
-        spreadsheetFactory.getAppliances()
-            .then(function(promisse) {
-                console.log(promisse.data.equipments)
-            })
-            .catch(function() {
-                //instanciar array vazio
-            })
+       
         
-        spreadsheetFactory.getCompanies()
-            .then(function(promisse) {
-                console.log(promisse.data.companies)
-            })
-            .catch(function() {
-                //intanciar array
-            })
+        
 
         spreadsheetFactory.getTimeIntervals(1)
             .then(function(promisse) {
-                console.log(promisse.data.timeIntervals)
+                // console.log(promisse.data.timeIntervals)
             })
             .catch(function() {
 
@@ -46,8 +33,8 @@ app
 
         spreadsheetFactory.monthlyCalculation(register)
             .then(function(promisse) {
-                console.log(promisse.data.conventionalRateMonth)
-                console.log(promisse.data.whiteRateMonth)
+                // console.log(promisse.data.conventionalRateMonth)
+                // console.log(promisse.data.whiteRateMonth)
             })
 
     }])
