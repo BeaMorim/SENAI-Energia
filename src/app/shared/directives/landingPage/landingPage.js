@@ -27,8 +27,8 @@ app
                     var hasSome = anterior.some(row => {
                         if (row.value === atual.value) {
                             row.ranges.push({
-                                start: atual.startTime,
-                                end: atual.endTime
+                                start: atual.startTime.substr(0, (atual.startTime.length - 3)),
+                                end: atual.endTime.substr(0, (atual.endTime.length - 3))
                             })
                             return true;
                         }
@@ -41,8 +41,8 @@ app
                         value: atual.value,
                         ranges: [
                             {
-                                start: atual.startTime,
-                                end: atual.endTime
+                                start: atual.startTime.substr(0, (atual.startTime.length - 3)),
+                                end: atual.endTime.substr(0, (atual.endTime.length - 3))
                             }
                         ]
                     });
