@@ -16,18 +16,18 @@
             <p>
                 Enquanto a tarifa convencional te oferece um valor fixo de energia, a tarifa branca possui custos variadosde energia dependendo do dia e horário de uso.
             </p>
-            <md-select ng-model="energyCompanySelected" flex="20">
+            <md-select ng-model="energyCompanySelected" flex="20" ng-change="getTimeIntervals()">
                 <md-option ng-repeat="energyCompany in energyCompanies" ng-value="energyCompany">{{energyCompany.name}}</md-option>
             </md-select>
             <div class="rates">
                 <div class="white-rate" flex="60">
                     <h3>Tarifa Branca</h3>
                     <div layout="row" layout-align="center center">
-                        <md-content flex-gt-xs="30" ng-repeat="rate in whiteRates">
+                        <md-content flex-gt-xs="30" ng-repeat="rate in rates.whiteRates">
                             <div>
                                 <md-card>
                                     <md-card-content layout="column">
-                                        <p ng-repeat="interval in rate.intervals">{{interval.startTime}} às {{interval.endTime}}</p>
+                                        <p ng-repeat="range in rate.ranges">{{range.start}} às {{range.end}}</p>
                                         <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
                                     </md-card-content>
                                 </md-card>
@@ -38,11 +38,11 @@
                 <div class="convencional-rate" flex="40">
                     <h3>Tarifa Convencional</h3>
                     <div layout="row" layout-align="center center">
-                        <md-content flex="50" ng-repeat="rate in conventionalRates">
+                        <md-content flex="50" ng-repeat="rate in rates.conventionalRates">
                             <div>
                                 <md-card>
                                     <md-card-content layout="column">
-                                        <p ng-repeat="interval in rate.intervals">{{interval.startTime}} às {{interval.endTime}}</p>
+                                        <p ng-repeat="range in rate.ranges">{{range.start}} às {{range.end}}</p>
                                         <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
                                     </md-card-content>
                                 </md-card>
