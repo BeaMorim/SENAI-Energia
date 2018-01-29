@@ -6,13 +6,17 @@ app
         }
     })
 
-    .controller('spreadsheetController', [ '$scope', 'spreadsheetFactory', function($scope, spreadsheetFactory) {
+    .controller('spreadsheetController', [ '$scope', 'spreadsheetFactory', '$filter', function($scope, spreadsheetFactory, $filter) {
 
+        $scope.measures = [ "W", "kW"]
         $scope.registers = [];
-        $scope.lastId = 0;
+        $scope.lastId = 1;
+
+        $scope.totalCostWhiteRate = 0.00;
+        $scope.totalCostConventionalRate = 0.00;
         
         $scope.addRegister = function() {
-            var newRegister = {id: $scope.lastId};
+            var newRegister = {id: $scope.lastId, companyId: $scope.companyId};
             $scope.lastId ++;
             $scope.registers.push(newRegister)
         }
@@ -22,36 +26,71 @@ app
             $scope.registers.splice(index, 1);
         }
 
-        $scope.teste = function() {
-            console.log('xxx')
+        $scope.setMeasure = function(register) {
+            if(register.measure == null) {
+                register.measure = $scope.measures[0];
+            }
         }
 
+        var convertPower = function(register) {
+            var newPower;
 
-        
-        
-        
+            if(register.measure == "W")
+                newPower = register.power;
+            else if(register.measure == "kW")
+                newPower = register.power*1000;
 
-        spreadsheetFactory.getTimeIntervals(1)
-            .then(function(promisse) {
-                // console.log(promisse.data.timeIntervals)
-            })
-            .catch(function() {
-
-            })
-
-        var register = {
-            power: 5,
-            quantity: 3,
-            time: 80,
-            startUse: '11:11:00',
-            daysOfUse: 30,
-            companyId: 5
+            return newPower;
         }
 
-        spreadsheetFactory.monthlyCalculation(register)
-            .then(function(promisse) {
-                // console.log(promisse.data.conventionalRateMonth)
-                // console.log(promisse.data.whiteRateMonth)
-            })
+        var formatSchedule = function(time) {
+            return $filter('date')(time, 'HH:mm:ss');
+        }
+
+        var formatTime = function(time) {
+            var periods = formatSchedule(time).split(':');
+            return Number(periods[0]*60) + Number(periods[1]);
+        }
+
+        var formatNumber = function(number) {
+            return (number < 0 ? 0 : number)
+        }
+
+        var formatDaysOfMonth = function(days) {
+            if(days > 31)
+                return 31;
+            else if(days < 0)
+                return 0;
+            else    
+                return days;
+        }
+
+        $scope.autoSave = function(register) {
+
+            register.power = formatNumber(register.power);
+            register.quantity = formatNumber(register.quantity);
+            register.daysOfUse = formatDaysOfMonth(register.daysOfUse);
+
+            if( register.power != null && register.quantity != null && register.daysOfUse != null && register.startUse != null && register.time != null) {
+
+                var newRegister = angular.copy(register);
+                newRegister.power = convertPower(newRegister)
+                newRegister.startUse = formatSchedule(newRegister.startUse);
+                newRegister.time = formatTime(newRegister.time);
+
+                spreadsheetFactory.monthlyCalculation(newRegister)
+                    .then(function(promisse) {
+                        register.costConventionalRate = promisse.data.conventionalRateMonth;
+                        register.costWhiteRate = promisse.data.whiteRateMonth;
+                        $scope.totalCostCalculation(register);
+                    })
+            }
+        }
+
+        $scope.totalCostCalculation = function(register) {
+            $scope.totalCostWhiteRate += register.costConventionalRate;
+            $scope.totalCostConventionalRate += register.costWhiteRate;
+        }
+
 
     }])

@@ -33,8 +33,8 @@
                         <md-autocomplete 
                         ng-disabled="false"
                         md-no-cache="true"  
-                        md-search-text="applianceSearchText" 
-                        md-items="appliance in electricalAppliances | filter: {'name': applianceSearchText}" 
+                        md-search-text="register.applianceSearchText" 
+                        md-items="appliance in electricalAppliances | filter: {'name': register.applianceSearchText}" 
                         md-item-text="appliance.name" 
                         md-min-length="0" 
                         ng-blur="teste()"
@@ -47,43 +47,42 @@
                     </td>
                     <td >
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="register.power" ng-change="teste()">
-                            <md-select ng-model="measure" ng-change="teste()">
-                                <md-option value="W">W</md-option>
-                                <md-option value="kW">kW</md-option>
+                            <input type="number" flex="40" ng-model="register.power" ng-change="autoSave(register)" ng-blur="setMeasure(register)">
+                            <md-select ng-model="register.measure" ng-change="autoSave(register)">
+                                <md-option value="{{measure}}" ng-repeat="measure in measures">{{measure}}</md-option>
                             </md-select>
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="register.quantity" flex="70" ng-change="teste()">
+                            <input type="number" ng-model="register.quantity" flex="50" ng-change="autoSave(register)">
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="register.daysOfUse" flex="35" ng-change="teste()">
+                            <input type="number" ng-model="register.daysOfUse" flex="35" ng-change="autoSave(register)">
                         </div>
                     </td>
                     <td> 
                         <div layout="row" layout-align="center center">
-                            <input type="time" ng-model="register.startUse" flex="70" ng-change="teste()"/>
+                            <input type="time" ng-model="register.startUse" ng-change="autoSave(register)"/>
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="time" ng-model="register.time" flex="55" ng-change="teste()"/>
+                            <input type="time" ng-model="register.time" ng-change="autoSave(register)"/>
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center" flex="75" class="month-cost">
                             <span>R$</span>
-                            <input type="number" flex="80" disabled>
+                            <input type="number" flex="80" ng-model="register.costWhiteRate" disabled>
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center" flex="65" class="month-cost">
                             <span>R$</span>
-                            <input type="number" flex="80" disabled>
+                            <input type="number" flex="80" ng-model="register.costConventionalRate" disabled>
                         </div>
                     </td>
                     <td>
@@ -102,13 +101,13 @@
             </div>
             <div flex="50" class="amount">
                 <h3 flex="55">Valor Final da Fatura</h3>
-                <div flex="20">
+                <div flex="20" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" disabled>
+                    <input type="number" ng-model="totalCostWhiteRate" disabled>
                 </div>
-                <div flex="25" flex-offset="10">
+                <div flex="25" flex-offset="10" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" flex="100" disabled>
+                    <input type="number" flex="100" ng-model="totalCostWhiteRate" disabled>
                 </div>
             </div>
         </div>

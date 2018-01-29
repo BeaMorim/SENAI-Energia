@@ -2,7 +2,7 @@ app
     .controller('rateCalculationController', function($scope, spreadsheetFactory, $mdDialog) {
 
         $scope.electricalAppliances = [];
-        $scope.companyId = 0;
+        $scope.companyId = 1;
 
         $scope.init = function(){
             openModal();
