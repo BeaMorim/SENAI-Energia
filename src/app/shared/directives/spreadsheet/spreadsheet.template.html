@@ -1,10 +1,16 @@
-<div class="container" flex-gt-md="80" flex="90">
+<div class="container" flex-gt-md="80" flex="90" ng-init="getCompanies()">
     <header>
         <h2><span class="white-rate">Tarifa Branca</span>&nbspou&nbsp<span class="convencional-rate">Tarifa Convencional?</span></h2>
         <p>Preencha a tabela e descubra qual delas te fará economizar!</p>
     </header>
     <div class="spreadsheet">
-        <div layout="row" layout-align="end end">
+        <div layout="row" layout-align="space-between center">
+            <div flex="20" layout="row" layout-align="center center" class="selected-company">
+                <span>Companhia Elétrica:</span>
+                <md-select ng-model="energyCompanySelected" flex="50" ng-change="recalculateSpreadsheet()">
+                    <md-option ng-repeat="energyCompany in energyCompanies" ng-value="energyCompany">{{energyCompany.name}}</md-option>
+                </md-select>
+            </div>
             <button ng-click="addRegister()">Adicionar Registro</button>
         </div>
         <div class="background" ng-class="{ 'active': registers.length==0}">
@@ -28,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="register in registers" class="register -active">
+                <tr ng-repeat="register in registers | orderBy:'id':true" class="register -active">
                     <td flex="15">
                         <md-autocomplete 
                         ng-disabled="false"
@@ -46,7 +52,7 @@
                     </td>
                     <td >
                         <div layout="row" layout-align="center center">
-                            <input type="number" flex="40" ng-model="register.power" ng-change="autoSave(register)" ng-blur="setMeasure(register)">
+                            <input flex="40" ng-model="register.power" ng-change="autoSave(register)" ng-blur="setMeasure(register)">
                             <md-select ng-model="register.measure" ng-change="autoSave(register)">
                                 <md-option value="{{measure}}" ng-repeat="measure in measures">{{measure}}</md-option>
                             </md-select>
@@ -54,12 +60,12 @@
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="register.quantity" flex="50" ng-change="autoSave(register)">
+                            <input ng-model="register.quantity" flex="50" ng-change="autoSave(register)">
                         </div>
                     </td>
                     <td>
                         <div layout="row" layout-align="center center">
-                            <input type="number" ng-model="register.daysOfUse" flex="35" ng-change="autoSave(register)">
+                            <input ng-model="register.daysOfUse" flex="35" ng-change="autoSave(register)">
                         </div>
                     </td>
                     <td> 
@@ -92,9 +98,9 @@
         </table>
         <div layout="row">
             <div flex="50" class="amount -consumption">
-                <h3 flex="45">Consumo Total</h3>
+                <h3 flex="30">Consumo Total</h3>
                 <div layou="row" layout-align="center end">
-                    <input type="number" disabled>
+                    <input ng-model="totalConsumption" disabled>
                     <span>kWh/mês</span>
                 </div>
             </div>
@@ -102,11 +108,11 @@
                 <h3 flex="55">Valor Final da Fatura</h3>
                 <div flex="20" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" step="any" ng-model="totalCostWhiteRate" disabled>
+                    <input ng-model="totalCostWhiteRate" disabled>
                 </div>
                 <div flex="25" flex-offset="5" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" step="any" flex="100" ng-model="totalCostConventionalRate" disabled>
+                    <input flex="100" ng-model="totalCostConventionalRate" disabled>
                 </div>
             </div>
         </div>

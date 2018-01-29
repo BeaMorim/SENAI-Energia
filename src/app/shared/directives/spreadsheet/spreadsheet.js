@@ -8,20 +8,35 @@ app
 
     .controller('spreadsheetController', [ '$scope', 'spreadsheetFactory', '$filter', function($scope, spreadsheetFactory, $filter) {
 
+        
         $scope.measures = [ "W", "kW"]
         $scope.registers = [];
         $scope.lastId = 1;
+        $scope.totalConsumption = 0;
+        $scope.totalCostWhiteRate = 0;
+        $scope.totalCostConventionalRate = 0;
 
+
+        $scope.getCompanies = function() {
+            spreadsheetFactory.companiesList
+                .then(function(promisse) {
+                    $scope.energyCompanies = promisse;
+                    $scope.energyCompanySelected = $scope.energyCompanies[0];
+                })
+        }
         
         $scope.addRegister = function() {
             var newRegister = {id: $scope.lastId, companyId: $scope.companyId};
             $scope.lastId ++;
             $scope.registers.push(newRegister)
+            console.log($scope.registers)
         }
 
         $scope.removeRegister = function(removeItem) {
             let index = $scope.registers.indexOf(removeItem);
             $scope.registers.splice(index, 1);
+            console.log($scope.registers)
+            $scope.recalculateSpreadsheet();
         }
 
         $scope.setMeasure = function(register) {
@@ -49,7 +64,7 @@ app
             else if(register.measure == "kW")
                 newPower = register.power*1000;
 
-            return newPower;
+            return parseInt(newPower);
         }
 
         var formatSchedule = function(time) {
@@ -62,7 +77,7 @@ app
         }
 
         var formatNumber = function(number) {
-            return (number < 0 ? 0 : number)
+            return (number < 0 ? 0 : parseInt(number))
         }
 
         var formatDaysOfMonth = function(days) {
@@ -71,7 +86,7 @@ app
             else if(days < 0)
                 return 0;
             else    
-                return days;
+                return parseInt(days);
         }
 
         $scope.autoSave = function(register) {
@@ -82,7 +97,7 @@ app
 
             if( register.power != null && register.quantity != null && register.daysOfUse != null && register.startUse != null && register.time != null) {
 
-                var newRegister = angular.copy(register);
+                let newRegister = angular.copy(register);
                 newRegister.power = convertPower(newRegister)
                 newRegister.startUse = formatSchedule(newRegister.startUse);
                 newRegister.time = formatTime(newRegister.time);
@@ -91,20 +106,46 @@ app
                     .then(function(promisse) {
                         register.costConventionalRate = promisse.data.conventionalRateMonth;
                         register.costWhiteRate = promisse.data.whiteRateMonth;
-                        $scope.totalCostCalculation(register);
+                        $scope.totalCostCalculation();
+                        $scope.totalConsumptionCalculation()
                     })
             }
         }
 
-        $scope.totalCostCalculation = function(register) {
-            $scope.totalCostWhiteRate = 0;
-            $scope.totalCostConventionalRate = 0;
+        $scope.totalCostCalculation = function() {
+            let totalCostWhiteRate = 0;
+            let totalCostConventionalRate = 0;
 
             $scope.registers.map(item => {
-                $scope.totalCostWhiteRate += item.costWhiteRate;
-                $scope.totalCostConventionalRate += item.costConventionalRate;
+                totalCostWhiteRate += item.costWhiteRate;
+                totalCostConventionalRate += item.costConventionalRate;
             })
+
+            $scope.totalCostWhiteRate = totalCostWhiteRate.toFixed(2);
+            $scope.totalCostConventionalRate = totalCostConventionalRate.toFixed(2);
             
+        }
+
+        $scope.recalculateSpreadsheet = function() {
+            $scope.companyId = $scope.energyCompanySelected.id;
+            if($scope.registers.length == 0) {
+                $scope.totalCostWhiteRate = 0;
+                $scope.totalCostConventionalRate = 0;
+                $scope.totalConsumption = 0;
+            } else {
+                $scope.registers.map(item => {
+                    item.companyId = $scope.companyId;
+                    $scope.autoSave(item); 
+                })
+            }
+        }
+
+        $scope.totalConsumptionCalculation = function() {
+            let totalConsuption = 0;
+            $scope.registers.map(item => {
+                totalConsuption += (item.power*item.quantity*(formatTime(item.time)/60)*item.daysOfUse)/1000;
+            })
+            $scope.totalConsumption = totalConsuption.toFixed(2);
         }
 
 

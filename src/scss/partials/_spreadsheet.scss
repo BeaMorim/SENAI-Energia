@@ -32,6 +32,13 @@
         }
     }
 
+    .selected-company {
+        color: $green;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #fffdf8;
+    }
+
 
     table {
         z-index: 10;
@@ -151,6 +158,10 @@
 
         &.-consumption {
             margin-right: 8px;
+
+            input {
+                text-align: end;
+            }
         }
     }
 }

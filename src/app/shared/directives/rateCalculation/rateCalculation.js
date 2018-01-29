@@ -17,7 +17,8 @@ app
                 clickOutsideToClose: false
             })
             .then(function(energyCompany) {
-                $scope.companyId = energyCompany;
+                $scope.companyId = energyCompany.id;
+                $scope.energyCompanySelected = energyCompany;
             })
         }
 
@@ -30,13 +31,14 @@ app
 
         function modalController($scope, $mdDialog) {
             $scope.hideModal = function() {
-                $mdDialog.hide($scope.energyCompanySelected.id);
+                $mdDialog.hide($scope.energyCompanySelected);
             };
 
             $scope.getCompanies = function() {
                 spreadsheetFactory.companiesList
                     .then(function(promisse) {
                         $scope.energyCompanies = promisse;
+                        $scope.energyCompanySelected = $scope.energyCompanies[0];
                     })
             }
         }
