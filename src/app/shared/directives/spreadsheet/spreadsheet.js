@@ -32,6 +32,15 @@ app
             }
         }
 
+        $scope.getPower = function(register) {
+            $scope.electricalAppliances.map(item => {
+                if( item.name == register.applianceSearchText ) {
+                    register.power = item.eletricPower;
+                    register.measure = $scope.measures[0];
+                }
+            })
+        }
+
         var convertPower = function(register) {
             var newPower;
 
@@ -88,8 +97,8 @@ app
         }
 
         $scope.totalCostCalculation = function(register) {
-            $scope.totalCostWhiteRate += register.costConventionalRate;
-            $scope.totalCostConventionalRate += register.costWhiteRate;
+            $scope.totalCostWhiteRate += register.costWhiteRate;
+            $scope.totalCostConventionalRate += register.costConventionalRate;
         }
 
 

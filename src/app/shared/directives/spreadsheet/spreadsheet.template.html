@@ -36,9 +36,8 @@
                         md-search-text="register.applianceSearchText" 
                         md-items="appliance in electricalAppliances | filter: {'name': register.applianceSearchText}" 
                         md-item-text="appliance.name" 
-                        md-min-length="0" 
-                        ng-blur="teste()"
-                        md-selected-item-change="teste()"
+                        md-min-length="0"
+                        md-selected-item-change="getPower(register)"
                         md-menu-class="autocomplete-custom-template">
                             <md-item-template>
                             <span> {{appliance.name}} </span>
@@ -107,7 +106,7 @@
                 </div>
                 <div flex="25" flex-offset="10" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" flex="100" ng-model="totalCostWhiteRate" disabled>
+                    <input type="number" flex="100" ng-model="totalCostConventionalRate" disabled>
                 </div>
             </div>
         </div>
