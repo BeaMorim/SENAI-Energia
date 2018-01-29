@@ -75,13 +75,13 @@
                     <td>
                         <div layout="row" layout-align="center center" flex="75" class="month-cost">
                             <span>R$</span>
-                            <input type="number" flex="80" ng-model="register.costWhiteRate" disabled>
+                            <input type="number" step="any" ng-model="register.costWhiteRate" disabled>
                         </div>
                     </td>
                     <td>
-                        <div layout="row" layout-align="center center" flex="65" class="month-cost">
+                        <div layout="row" layout-align="center center" flex="75" class="month-cost">
                             <span>R$</span>
-                            <input type="number" flex="80" ng-model="register.costConventionalRate" disabled>
+                            <input type="number" step="any" flex="95" ng-model="register.costConventionalRate" disabled>
                         </div>
                     </td>
                     <td>
@@ -102,11 +102,11 @@
                 <h3 flex="55">Valor Final da Fatura</h3>
                 <div flex="20" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" ng-model="totalCostWhiteRate" disabled>
+                    <input type="number" step="any" ng-model="totalCostWhiteRate" disabled>
                 </div>
-                <div flex="25" flex-offset="10" layout="row" layout-align="center center">
+                <div flex="25" flex-offset="5" layout="row" layout-align="center center">
                     <span>R$</span>
-                    <input type="number" flex="100" ng-model="totalCostConventionalRate" disabled>
+                    <input type="number" step="any" flex="100" ng-model="totalCostConventionalRate" disabled>
                 </div>
             </div>
         </div>

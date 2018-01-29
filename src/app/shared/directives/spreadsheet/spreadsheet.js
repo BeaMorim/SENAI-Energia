@@ -12,8 +12,6 @@ app
         $scope.registers = [];
         $scope.lastId = 1;
 
-        $scope.totalCostWhiteRate = 0.00;
-        $scope.totalCostConventionalRate = 0.00;
         
         $scope.addRegister = function() {
             var newRegister = {id: $scope.lastId, companyId: $scope.companyId};
@@ -38,7 +36,9 @@ app
                     register.power = item.eletricPower;
                     register.measure = $scope.measures[0];
                 }
-            })
+            });
+
+            $scope.autoSave(register);
         }
 
         var convertPower = function(register) {
@@ -97,8 +97,14 @@ app
         }
 
         $scope.totalCostCalculation = function(register) {
-            $scope.totalCostWhiteRate += register.costWhiteRate;
-            $scope.totalCostConventionalRate += register.costConventionalRate;
+            $scope.totalCostWhiteRate = 0;
+            $scope.totalCostConventionalRate = 0;
+
+            $scope.registers.map(item => {
+                $scope.totalCostWhiteRate += item.costWhiteRate;
+                $scope.totalCostConventionalRate += item.costConventionalRate;
+            })
+            
         }
 
 
