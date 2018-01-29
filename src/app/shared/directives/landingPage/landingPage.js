@@ -6,6 +6,7 @@ app
                 .then(function(promisse) {
                     $scope.energyCompanies = promisse;
                     $scope.energyCompanySelected = $scope.energyCompanies[0];
+                    $scope.getTimeIntervals();
                 })
         }
 
@@ -17,7 +18,6 @@ app
                         whiteRates: arrayReduce(timeIntervalsList, 'Branca'),
                         conventionalRates: arrayReduce(timeIntervalsList, 'Convencional')
                     }
-                    console.log($scope.rates)
                 })
         }
 
@@ -25,7 +25,7 @@ app
             return array.reduce((anterior, atual, indice, array) => {
                 if (atual.type === tipoTarifa) {
                     var hasSome = anterior.some(row => {
-                        if (row.value === atual.value) {
+                        if (row.value === (atual.value/1000).toFixed(2)) {
                             row.ranges.push({
                                 start: atual.startTime.substr(0, (atual.startTime.length - 3)),
                                 end: atual.endTime.substr(0, (atual.endTime.length - 3))
@@ -38,7 +38,7 @@ app
                     if (hasSome) return anterior;
         
                     return anterior.concat({
-                        value: atual.value,
+                        value: (atual.value/1000).toFixed(2),
                         ranges: [
                             {
                                 start: atual.startTime.substr(0, (atual.startTime.length - 3)),

@@ -10,10 +10,7 @@ app
 
         var _companiesList = getCompanies()
             .then(function(promisse) {
-                energyCompanies = promisse.data.companies;
-                return energyCompanies;
-            })
-            .catch(function() {
+                var energyCompanies = promisse.data.companies;
                 return energyCompanies;
             })
 

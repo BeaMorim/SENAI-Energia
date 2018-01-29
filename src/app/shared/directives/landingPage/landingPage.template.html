@@ -28,7 +28,10 @@
                                 <md-card>
                                     <md-card-content layout="column">
                                         <p ng-repeat="range in rate.ranges">{{range.start}} às {{range.end}}</p>
-                                        <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
+                                        <div layout="row">
+                                            <span>R$<strong>{{rate.value}}</strong></span>
+                                            <p layout="row" layout-align="flex-end flex-end">/kWh</p>
+                                        </div>
                                     </md-card-content>
                                 </md-card>
                             </div>
@@ -43,7 +46,10 @@
                                 <md-card>
                                     <md-card-content layout="column">
                                         <p ng-repeat="range in rate.ranges">{{range.start}} às {{range.end}}</p>
-                                        <span>R$ &nbsp<strong>{{rate.value}}</strong></span>
+                                        <div layout="row">
+                                            <span>R$<strong>{{rate.value}}</strong></span>
+                                            <p layout="row" layout-align="flex-end flex-end">/kWh</p>
+                                        </div>
                                     </md-card-content>
                                 </md-card>
                             </div>
