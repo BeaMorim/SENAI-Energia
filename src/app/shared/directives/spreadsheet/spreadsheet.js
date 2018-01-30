@@ -26,10 +26,15 @@ app
         }
         
         $scope.addRegister = function() {
-            var newRegister = {id: $scope.lastId, companyId: $scope.companyId};
+            var newRegister = {
+                id: $scope.lastId, 
+                companyId: $scope.companyId,
+                costConventionalRate: 0,
+                costWhiteRate: 0
+            };
             $scope.lastId ++;
             $scope.registers.push(newRegister)
-            console.log($scope.registers)
+            
         }
 
         $scope.removeRegister = function(removeItem) {
@@ -106,6 +111,12 @@ app
                     .then(function(promisse) {
                         register.costConventionalRate = promisse.data.conventionalRateMonth;
                         register.costWhiteRate = promisse.data.whiteRateMonth;
+                        $scope.totalCostCalculation();
+                        $scope.totalConsumptionCalculation()
+                    })
+                    .catch(function() {
+                        register.costConventionalRate = 0;
+                        register.costWhiteRate = 0;
                         $scope.totalCostCalculation();
                         $scope.totalConsumptionCalculation()
                     })
