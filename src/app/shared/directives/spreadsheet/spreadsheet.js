@@ -154,7 +154,8 @@ app
         $scope.totalConsumptionCalculation = function() {
             let totalConsuption = 0;
             $scope.registers.map(item => {
-                totalConsuption += (item.power*item.quantity*(formatTime(item.time)/60)*item.daysOfUse)/1000;
+                if( !Number.isNaN(item.power) && !Number.isNaN(item.quantity) && !Number.isNaN(item.time) && !Number.isNaN(item.daysOfUse) )
+                    totalConsuption += (item.power*item.quantity*(formatTime(item.time)/60)*item.daysOfUse)/1000;
             })
             $scope.totalConsumption = totalConsuption.toFixed(2);
         }
